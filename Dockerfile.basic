@@ -5,7 +5,7 @@ RUN go mod download
 COPY . .
 ARG VERSION=dev
 # TODO: compile the binary; inject VERSION into main.version using -ldflags; name the output binary "server"
-RUN # ???
+RUN go build -ldflags="-X main.version=${VERSION}" -o server .
 EXPOSE 8080
 # TODO: run the server binary
-CMD # ???
+CMD ["./server"]
